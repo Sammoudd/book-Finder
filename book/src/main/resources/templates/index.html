@@ -1,0 +1,95 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+
+
+
+<title>Book Search</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<meta
+	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
+	name='viewport' />
+<meta name="viewport" content="width=device-width" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!--     Fonts and icons     -->
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+	th:href="@{//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css}"
+	rel="stylesheet" />
+
+
+
+</head>
+
+<body>
+
+
+	<div class="search-container">
+		<h1 class="title">Book Finder</h1>
+		<form action="/index" style="text-align: center; margin: 20px">
+			<input type="text" placeholder="Search.." name="search">
+			<button type="submit">
+				<i class="fa fa-search"></i>
+			</button>
+		</form>
+	</div>
+
+
+
+	<h1 class="title"
+		th:text="${totalItems > 0} ? 'Total books count: '+${totalItems} :'Nothing to show...'">
+	</h1>
+
+
+
+	<section class="container">
+		<div th:each="book : ${books}">
+			<div class="card">
+
+
+				<div th:if="${book.volumeInfo.imageLinks != null}">
+					<div th:if="${book.volumeInfo.imageLinks.thumbnail != null}">
+						<img th:src="${book.volumeInfo.imageLinks.thumbnail}" alt=""
+							class="image"></img>
+					</div>
+				</div>
+
+
+
+				<div class="cardInfo">
+					<p class="titleDot">
+						Title : <span class="valueDot" th:text="${book.volumeInfo.title}">
+						</span>
+					</p>
+					<p class="titleDot">
+						Subtitle : <span class="valueDot"
+							th:text="${book.volumeInfo.subtitle}"> </span>
+					</p>
+					<th:block th:each="auhtor,state : ${book.volumeInfo.authors}">
+						<p class="titleDot">
+							Authors : <span class="valueDot" th:text="${state.current}">
+							</span>
+						</p>
+					</th:block>
+					<p class="titleDot">
+						Published Date : <span class="valueDot"
+							th:text="${book.volumeInfo.publishedDate}"> </span>
+					</p>
+					<p class="titleDot">
+						Publisher : <span class="valueDot"
+							th:text="${book.volumeInfo.publisher}"> </span>
+					</p>
+					
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+.title {
+	color: #505050;
+	text-align: center;
+	marginTop: 10px
+}
+
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+@media screen and (max-width: 640px) {
+	.card {
+		min-height: 300px;
+		width: 100vw;
+	}
+}
+
+.card:hover {
+	background-color: #eaeaea;
+	transition: 0.5s;
+}
+
+.card {
+	cursor: pointer;
+	padding: 20px;
+	margin: 20px;
+	background-color: #fff;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	box-shadow: 5px 9px 24px 0px rgba(0, 0, 0, 0.75);
+	-webkit-box-shadow: 5px 9px 24px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 5px 9px 24px 0px rgba(0, 0, 0, 0.75);
+}
+
+@media screen and (min-width: 640px) {
+	.card {
+		cursor: pointer;
+		min-height: 300px;
+		min-width: 280px;
+		width: 30vw;
+	}
+}
+
+.image {
+	width: 200px;
+	height: auto;
+	margin-right: 20px
+}
+
+.titleDot {
+	color: black;
+	font-size: 16px;
+	font-weight: 800;
+}
+
+.valueDot {
+	color: #505050;
+	font-size: 14px;
+	font-weight: 400;
+}
+
+.cardInfo {
+	display: flex;
+	flex-direction: column;
+}
