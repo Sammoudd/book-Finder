@@ -16,7 +16,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BookServiceImplementation implements BookService {
-
+	
+	
 	@Override
 	public ResponseJson search(String query) {
 
@@ -50,37 +51,4 @@ public class BookServiceImplementation implements BookService {
 		}
 	}
 
-	@Override
-	public Book findBookById(String id) {
-		URL url = null;
-		try {
-			url = new URL("https://www.googleapis.com/books/v1/volumes/" + id);
-			HttpURLConnection con = (HttpURLConnection) url.openConnection();
-			con.setRequestMethod("GET");
-			con.setRequestProperty("Content-Type", "application/json; utf-8");
-			con.setRequestProperty("Accept", "application/json");
-
-			con.setDoOutput(true);
-
-			try (BufferedReader br = new BufferedReader(
-					new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))) {
-				StringBuilder response = new StringBuilder();
-				String responseLine;
-				while ((responseLine = br.readLine()) != null) {
-					response.append(responseLine.trim());
-				}
-				System.out.println("Api response : " + response);
-
-				Gson gson = new Gson();
-				Book book = gson.fromJson(response.toString(), Book.class);
-
-				System.out.println("response : " + book.toString());
-				return book;
-			}
-		} catch (IOException e) {
-			return new Book();
-		}
-	
-
-}
 }
